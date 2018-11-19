@@ -1,0 +1,8 @@
+version : '2'
+services:
+    elasticsearch5:
+        build: ./docker/elasticsearch5
+        container_name: elasticsearch5
+        ports:
+          - 9200:9200
+          - 9300:9300
