@@ -28,10 +28,22 @@ https://github.com/antonshell/elastic_examples.git
 
 2 . Create configs
 
+```
 cp _config.php.dist _config.php
 cp docker-compose.yml.dist docker-compose.yml
+```
 
-3 . 
+3 . Start elastic 
+
+```
+docker-compose up
+```
+
+4 . Create indexes, import data to Elastic 
+
+```
+php push_data.php
+```
 
 ## Examples
 
