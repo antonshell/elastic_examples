@@ -1,6 +1,6 @@
 # Elastic examples
 
-Usage examples examples. Implemented 
+Usage examples examples. Implemented features:
 
 - Creating indexes/mappings.
 - Import data into Elastic
@@ -16,7 +16,28 @@ Usage examples examples. Implemented
 - Ingest plugin examples - upload binary files(doc, docx, xls, xlsx, ppt, pptx, pdf, txt) 
 to elastic, search by content
 
-## Demo:
+https://github.com/antonshell/elastic_examples/blob/master/postman/Elastic_Demo.postman_collection.json
+
+## Install
+
+1 . Clone repository
+
+```
+https://github.com/antonshell/elastic_examples.git
+```
+
+2 . Create configs
+
+cp _config.php.dist _config.php
+cp docker-compose.yml.dist docker-compose.yml
+
+3 . 
+
+## Examples
+
+Postman collection is here:
+https://github.com/antonshell/elastic_examples/blob/master/postman/Elastic_Demo.postman_collection.json
+Examples scripts located in ```demo``` folder
 
 ### Create Index
 
