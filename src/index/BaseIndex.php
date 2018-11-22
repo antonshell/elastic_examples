@@ -56,9 +56,9 @@ abstract class BaseIndex
                                 'my_synonym_filter',
                                 'ru_stopwords',
                                 'ru_stemmer',
-
-                                'russian_morphology',
-                                'english_morphology',
+                                /* needed for 5.6 */
+                                //'russian_morphology',
+                                //'english_morphology',
                                 'en_stopwords'
                             ],
                         ],

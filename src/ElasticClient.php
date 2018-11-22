@@ -101,7 +101,7 @@ class ElasticClient
     }
 
     public function createPipeline(){
-        $url = '_ingest/pipeline/attachment';
+        $url = $this->getBaseUrl() . '_ingest/pipeline/attachment';
         $body = '{
          "description" : "Extract attachment information encoded in Base64 with UTF-8 charset",
          "processors" : [
@@ -113,7 +113,7 @@ class ElasticClient
            }
          ]
         }';
-        $this->curl->sendRequest($url, 'PUT', $body);
+        $this->curl->sendRequest($url, 'PUT', $body, $this->getHeaders());
     }
 
     /**
