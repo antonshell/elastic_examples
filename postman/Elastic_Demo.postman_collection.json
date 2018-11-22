@@ -485,7 +485,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://127.0.0.1:9200/ingest/type/_search?_source=name,attachment",
+							"raw": "http://127.0.0.1:9200/ingest/type/_search?_source=id,name,attachment",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -502,7 +502,7 @@
 							"query": [
 								{
 									"key": "_source",
-									"value": "name,attachment"
+									"value": "id,name,attachment"
 								}
 							]
 						}
@@ -521,7 +521,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"_source\": [\"name\", \"attachment\"],\n  \"query\": {\n    \"bool\": {\n      \"must\": [\n        {\n          \"match\": {\n            \"attachment.content\": \"Европейский\"\n          }\n        }\n      ]\n    }\n  }\n}"
+							"raw": "{\n  \"_source\": [\"id\", \"name\", \"attachment\"],\n  \"query\": {\n    \"bool\": {\n      \"must\": [\n        {\n          \"match\": {\n            \"attachment.content\": \"Европейский\"\n          }\n        }\n      ]\n    }\n  }\n}"
 						},
 						"url": {
 							"raw": "http://127.0.0.1:9200/ingest/type/_search",
@@ -593,7 +593,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://127.0.0.1:9200/morphology/_search",
+							"raw": "http://127.0.0.1:9200/post/_search",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -603,7 +603,7 @@
 							],
 							"port": "9200",
 							"path": [
-								"morphology",
+								"post",
 								"_search"
 							]
 						}
@@ -625,7 +625,7 @@
 							"raw": "{\"query\": {\"query_string\": {\"query\": \"body:Япония\"}}}"
 						},
 						"url": {
-							"raw": "http://127.0.0.1:9200/morphology/type/_search",
+							"raw": "http://127.0.0.1:9200/post/type/_search",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -635,7 +635,7 @@
 							],
 							"port": "9200",
 							"path": [
-								"morphology",
+								"post",
 								"type",
 								"_search"
 							]
@@ -655,10 +655,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"query\": {\"query_string\": {\"query\": \"body:Япония\"}}}"
+							"raw": "{\"query\": {\"query_string\": {\"query\": \"content:Япония\"}}}"
 						},
 						"url": {
-							"raw": "http://127.0.0.1:9200/morphology/type/_search",
+							"raw": "http://127.0.0.1:9200/post/type/_search",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -668,7 +668,7 @@
 							],
 							"port": "9200",
 							"path": [
-								"morphology",
+								"post",
 								"type",
 								"_search"
 							]
@@ -1144,7 +1144,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": {\n    \"multi_match\" : {\n      \"query\": \"колесо\",\n      \"fields\": [\"name\", \"content\"]\n    }\n  }\n}"
+							"raw": "{\n  \"query\": {\n    \"multi_match\" : {\n      \"query\": \"предприниматель\",\n      \"fields\": [\"name\", \"content\"]\n    }\n  }\n}"
 						},
 						"url": {
 							"raw": "http://127.0.0.1:9200/post/type/_search",
@@ -1330,10 +1330,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"settings\": {\n    \"index\": {\n      \"similarity\": {\n        \"default\": {\n          \"type\": \"BM25\"\n        }\n      }\n    },\n    \"analysis\": {\n      \"filter\": {\n        \"my_synonym_filter\": {\n          \"type\": \"synonym\",\n          \"synonyms\": [\n            \"erat, машина\",\n            \"pede, кружка\",\n            \"praesent, стол\"\n          ]\n        },\n        \"ru_stop\": {\n          \"type\": \"stop\",\n          \"language\": \"_russian_\"\n        },\n        \"ru_stemmer\": {\n          \"type\": \"stemmer\",\n          \"language\": \"russian\"\n        },\n        \"my_stopwords\": {\n          \"type\": \"stop\",\n          \"stopwords\": \"а,без,более,бы,был,была,были,было,быть,в,вам,вас,весь,во,вот,все,всего,всех,вы,где,да,даже,для,до,его,ее,если,есть,еще,же,за,здесь,и,из,или,им,их,к,как,ко,когда,кто,ли,либо,мне,может,мы,на,надо,наш,не,него,нее,нет,ни,них,но,ну,о,об,однако,он,она,они,оно,от,очень,по,под,при,с,со,так,также,такой,там,те,тем,то,того,тоже,той,только,том,ты,у,уже,хотя,чего,чей,чем,что,чтобы,чье,чья,эта,эти,это,я,a,an,and,are,as,at,be,but,by,for,if,in,into,is,it,no,not,of,on,or,such,that,the,their,then,there,these,they,this,to,was,will,with\"\n        }\n      },\n      \"analyzer\": {\n        \"my_synonyms\": {\n          \"tokenizer\": \"standard\",\n          \"filter\": [\n            \"lowercase\",\n            \"my_synonym_filter\",\n            \"ru_stop\",\n            \"ru_stemmer\",\n            \"russian_morphology\",\n            \"english_morphology\",\n            \"my_stopwords\"\n          ]\n        },\n        \"model_analyzer\": {\n          \"tokenizer\": \"standard\",\n          \"filter\": [\n            \"lowercase\"\n          ]\n        }\n      }\n    }\n  }\n}"
+					"raw": "{\n  \"settings\": {\n    \"index\": {\n      \"similarity\": {\n        \"default\": {\n          \"type\": \"BM25\"\n        }\n      }\n    },\n    \"analysis\": {\n      \"filter\": {\n        \"my_synonym_filter\": {\n          \"type\": \"synonym\",\n          \"synonyms\": [\n            \"законный, легальный\",\n    \t\t\"автомобиль, машина\"\n          ]\n        },\n        \"ru_stop\": {\n          \"type\": \"stop\",\n          \"language\": \"_russian_\"\n        },\n        \"ru_stemmer\": {\n          \"type\": \"stemmer\",\n          \"language\": \"russian\"\n        },\n        \"my_stopwords\": {\n          \"type\": \"stop\",\n          \"stopwords\": \"а,без,более,бы,был,была,были,было,быть,в,вам,вас,весь,во,вот,все,всего,всех,вы,где,да,даже,для,до,его,ее,если,есть,еще,же,за,здесь,и,из,или,им,их,к,как,ко,когда,кто,ли,либо,мне,может,мы,на,надо,наш,не,него,нее,нет,ни,них,но,ну,о,об,однако,он,она,они,оно,от,очень,по,под,при,с,со,так,также,такой,там,те,тем,то,того,тоже,той,только,том,ты,у,уже,хотя,чего,чей,чем,что,чтобы,чье,чья,эта,эти,это,я,a,an,and,are,as,at,be,but,by,for,if,in,into,is,it,no,not,of,on,or,such,that,the,their,then,there,these,they,this,to,was,will,with\"\n        }\n      },\n      \"analyzer\": {\n        \"my_synonyms\": {\n          \"tokenizer\": \"standard\",\n          \"filter\": [\n            \"lowercase\",\n            \"my_synonym_filter\",\n            \"ru_stop\",\n            \"ru_stemmer\",\n            /* actial for 5.6 */\n            /*\"russian_morphology\",\n            \"english_morphology\",*/\n            \"my_stopwords\"\n          ]\n        },\n        \"model_analyzer\": {\n          \"tokenizer\": \"standard\",\n          \"filter\": [\n            \"lowercase\"\n          ]\n        }\n      }\n    }\n  }\n}"
 				},
 				"url": {
-					"raw": "http://127.0.0.1:9200/post",
+					"raw": "http://127.0.0.1:9200/post2",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1343,7 +1343,7 @@
 					],
 					"port": "9200",
 					"path": [
-						"post"
+						"post2"
 					]
 				}
 			},
@@ -1468,7 +1468,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "127.0.0.1:9200/post/type/_search?_source=id,name,content",
+					"raw": "127.0.0.1:9200/post/type/1?_source=id,name,content",
 					"host": [
 						"127",
 						"0",
@@ -1479,7 +1479,7 @@
 					"path": [
 						"post",
 						"type",
-						"_search"
+						"1"
 					],
 					"query": [
 						{
@@ -1690,7 +1690,7 @@
 			"response": []
 		},
 		{
-			"name": "Suggest",
+			"name": "Suggest 5.6",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -1722,7 +1722,7 @@
 			"response": []
 		},
 		{
-			"name": "Search by attribute",
+			"name": "Suggest 6.5",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -1733,7 +1733,39 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": [\n        {\n          \"match\": {\n            \"name\": \"erat\"\n          }\n        }\n      ]\n    }\n  }\n}"
+					"raw": "{\n  \"suggest\" : {\n    \"name-suggestion\" : {\n      \"text\" : \"маш\",\n      \"completion\" : {\n        \"field\" : \"name_suggest\"\n      }\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9200/post/_search",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9200",
+					"path": [
+						"post",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"from\" : 0, \"size\" : 10,\n  \"query\": {\n    \"multi_match\" : {\n      \"query\": \"компиляторы\",\n      \"fields\": [\"name\", \"content\"]\n    }\n  },\n  \"sort\" : [\n    { \"id\" : \"desc\" }\n  ]\n}"
 				},
 				"url": {
 					"raw": "http://127.0.0.1:9200/post/type/_search",
