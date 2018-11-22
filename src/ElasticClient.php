@@ -129,7 +129,7 @@ class ElasticClient
     public function runQuery($url, $method = 'GET', $data = []){
         $url = $this->getBaseUrl() . '/' . $url;
 
-        $results = $this->curl->sendRequest($url, $method, $data);
+        $results = $this->curl->sendRequest($url, $method, $data, $this->getHeaders());
         return $results;
     }
 

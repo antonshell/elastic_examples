@@ -89,6 +89,7 @@ Simple search by keyword
 
 ```
 php demo/05_search.php "компиляторы"
+php demo/05_search.php "правда"
 ```
 
 ### Search + Fuzzy
@@ -97,6 +98,8 @@ Fuzzy search. Error "компидяторы" -> "компиляторы". Should
 
 ```
 php demo/06_search_fuzzy.php "компидяторы"
+php demo/06_search_fuzzy.php "иффиктивный"
+php demo/06_search_fuzzy.php "довно"
 ```
 
 ### Filters
@@ -121,6 +124,7 @@ Search by synonyms: "легальный" -> "законный"
 
 ```
 php demo/09_search_synonyms.php легальный
+php demo/09_search_synonyms.php машина
 ```
 
 ### Dynamic Index
@@ -137,6 +141,8 @@ Highlight search query with <em> tags
 
 ```
 php demo/11_search_highlight.php Sony
+php demo/11_search_highlight.php смартфон
+php demo/11_search_highlight.php Xperia
 ```
 
 ### Search Suggest
@@ -146,6 +152,7 @@ Typing "маш", would show "Стековая машина ..."
 
 ```
 php demo/12_search_suggest.php "Стековая маш"
+php demo/12_search_suggest.php "моно"
 ```
 
 ### Search Morphology + Stop Words
@@ -155,7 +162,9 @@ Searching by keyword "рейтинговый" should return record, that contain
 Searching by keyword "более" should return nothing, because it is stopword
 
 ```
-php demo/13_search_morfology_stop_words.php рейтинговый
+php demo/13_search_morfology_stop_words.php рейтингами
+php demo/13_search_morfology_stop_words.php автомобилями
+php demo/13_search_morfology_stop_words.php версией
 ```
 
 ### Ingest Push Data
@@ -174,4 +183,6 @@ Search by uploaded binary documents
 
 ```
 php demo/15_ingest_search.php "Европейский"
+php demo/15_ingest_search.php "Биллом Гейтс"
+php demo/15_ingest_search.php "РОГА И КОПЫТА"
 ```
